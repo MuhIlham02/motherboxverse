@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotherBoxVerse</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00FFFF">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&family=Rajdhani:wght@600&family=Poppins:wght@400&family=Exo+2:wght@300&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <img src="images/logo.png" alt="MotherBoxVerse Logo" class="splash-logo">
+            <h1 class="splash-title">MotherBoxVerse</h1>
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app" style="display: none;">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-logo">
+                <img src="images/logo.png" alt="Logo" class="logo-icon">
+                <h1 class="app-title">MotherBoxVerse</h1>
+            </div>
+        </header>
+
+        <!-- Search Bar -->
+        <div id="search-container" class="search-container" style="display: none;">
+            <input type="text" id="search-input" placeholder="Search" class="search-input">
+            <button id="search-btn" class="search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div id="tab-navigation" class="tab-navigation" style="display: none;">
+            <button class="tab-btn active" data-universe="all">All</button>
+            <button class="tab-btn" data-universe="DCEU">DCEU</button>
+            <button class="tab-btn" data-universe="ArrowVerse">ArrowVerse</button>
+            <button class="tab-btn" data-universe="Dark Knight Trilogy">Dark Knight</button>
+            <button class="tab-btn" data-universe="DCU">DCU</button>
+            <button class="tab-btn" data-universe="DC Standalone">Standalone</button>
+        </div>
+
+        <!-- Content Area -->
+        <main id="content" class="content">
+            <!-- Konten dinamis akan dimuat di sini -->
+        </main>
+
+        <!-- Bottom Navigation - NOW WITH 5 ITEMS! -->
+        <nav class="bottom-nav">
+            <button class="nav-btn active" data-page="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </button>
+            <button class="nav-btn" data-page="watchlist">
+                <i class="fas fa-list"></i>
+                <span>Watchlist</span>
+            </button>
+            <button class="nav-btn" data-page="favorites">
+                <i class="fas fa-heart"></i>
+                <span>Favorites</span>
+            </button>
+            <button class="nav-btn" data-page="profile">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </button>
+            <button class="nav-btn" data-page="about">
+                <i class="fas fa-info-circle"></i>
+                <span>About</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/supabase-api.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
