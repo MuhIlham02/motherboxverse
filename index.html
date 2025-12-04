@@ -23,12 +23,56 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Splash Screen -->
+    <!-- Animated Background Container -->
+    <div id="particles-js"></div>
+    
+    <!-- Animated Gradient Background -->
+    <div class="animated-bg"></div>
+    
+    <!-- Splash Screen - CINEMATIC VERSION -->
     <div id="splash-screen">
+        <!-- Particles background for splash -->
+        <div id="splash-particles"></div>
+        
         <div class="splash-content">
-            <img src="images/logo.png" alt="MotherBoxVerse Logo" class="splash-logo">
-            <h1 class="splash-title">MotherBoxVerse</h1>
-            <div class="loader"></div>
+            <!-- Logo with animation -->
+            <div class="logo-container">
+                <img src="images/logo.png" alt="MotherBoxVerse Logo" class="splash-logo">
+                <div class="logo-glow"></div>
+            </div>
+            
+            <!-- Title with typewriter effect -->
+            <h1 class="splash-title">
+                <span class="typewriter" id="typewriter-text"></span>
+                <span class="cursor">|</span>
+            </h1>
+            
+            <!-- Tagline -->
+            <p class="splash-tagline">Your Ultimate DC Universe Catalog</p>
+            
+            <!-- Loading bar -->
+            <div class="loading-bar-container">
+                <div class="loading-bar">
+                    <div class="loading-progress" id="loading-progress"></div>
+                </div>
+                <div class="loading-text">
+                    <span id="loading-percent">0%</span>
+                    <span class="loading-dots">
+                        <span>.</span><span>.</span><span>.</span>
+                    </span>
+                </div>
+            </div>
+            
+            <!-- Powered by text -->
+            <div class="splash-footer">
+                <span class="powered-by">Powered by Supabase</span>
+            </div>
+        </div>
+        
+        <!-- Particle burst effect -->
+        <div class="particle-burst">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
         </div>
     </div>
 
@@ -65,7 +109,7 @@
             <!-- Konten dinamis akan dimuat di sini -->
         </main>
 
-        <!-- Bottom Navigation - NOW WITH 5 ITEMS! -->
+        <!-- Bottom Navigation - 5 ITEMS -->
         <nav class="bottom-nav">
             <button class="nav-btn active" data-page="home">
                 <i class="fas fa-home"></i>
@@ -90,10 +134,13 @@
         </nav>
     </div>
 
+    <!-- Particles.js Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
     <!-- Supabase JS Client -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
-    <!-- Scripts -->
+    <!-- Scripts - ORDER MATTERS! -->
     <script src="js/config.js"></script>
     <script src="js/supabase-api.js"></script>
     <script src="js/profile.js"></script>
