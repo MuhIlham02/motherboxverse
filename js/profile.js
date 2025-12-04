@@ -1,4 +1,4 @@
-// Profile Management System
+// Profile Management System - COMPLETE VERSION
 const ProfileManager = {
     // Get user profile from localStorage
     getProfile() {
@@ -7,13 +7,18 @@ const ProfileManager = {
             bio: 'A passionate DC Universe enthusiast',
             email: '',
             favoriteUniverse: 'DCEU',
-            photoUrl: 'images/batman-profile.jpg', // Default profile photo
+            photoUrl: 'images/batman-profile.jpg',
             joinDate: new Date().toISOString()
         };
         
         const stored = localStorage.getItem('userProfile');
         if (stored) {
-            return { ...defaultProfile, ...JSON.parse(stored) };
+            try {
+                return { ...defaultProfile, ...JSON.parse(stored) };
+            } catch (e) {
+                console.error('Error parsing profile:', e);
+                return defaultProfile;
+            }
         }
         
         // Save default profile on first load
@@ -23,7 +28,13 @@ const ProfileManager = {
     
     // Save profile to localStorage
     saveProfile(profile) {
-        localStorage.setItem('userProfile', JSON.stringify(profile));
+        try {
+            localStorage.setItem('userProfile', JSON.stringify(profile));
+            return true;
+        } catch (e) {
+            console.error('Error saving profile:', e);
+            return false;
+        }
     },
     
     // Update profile field
@@ -35,6 +46,16 @@ const ProfileManager = {
     
     // Get stats (watchlist, favorites, watched counts)
     getStats() {
+        // Make sure Storage object exists
+        if (typeof Storage === 'undefined') {
+            return {
+                watchlistCount: 0,
+                favoritesCount: 0,
+                watchedCount: 0,
+                watchedEpisodesCount: 0
+            };
+        }
+        
         return {
             watchlistCount: Storage.getWatchlist().length,
             favoritesCount: Storage.getFavorites().length,
@@ -66,7 +87,7 @@ const ProfileManager = {
             const reader = new FileReader();
             
             reader.onload = (e) => {
-                resolve(e.target.result); // Base64 string
+                resolve(e.target.result);
             };
             
             reader.onerror = () => {
@@ -77,7 +98,7 @@ const ProfileManager = {
         });
     },
     
-    // Compress image if needed (optional but recommended)
+    // Compress image
     compressImage(base64, maxWidth = 300, maxHeight = 300) {
         return new Promise((resolve) => {
             const img = new Image();
@@ -105,8 +126,12 @@ const ProfileManager = {
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(img, 0, 0, width, height);
                 
-                // Convert to base64 (JPEG with 0.8 quality for smaller size)
+                // Convert to base64 (JPEG with 0.8 quality)
                 resolve(canvas.toDataURL('image/jpeg', 0.8));
+            };
+            img.onerror = () => {
+                // If error, return original
+                resolve(base64);
             };
             img.src = base64;
         });
